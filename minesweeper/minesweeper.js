@@ -15,4 +15,3 @@ console.log(guessLine);
 console.log(bombLine);
 console.log(blankLine);
 console.log("Another cute message");
-console.log("Fucking github");
