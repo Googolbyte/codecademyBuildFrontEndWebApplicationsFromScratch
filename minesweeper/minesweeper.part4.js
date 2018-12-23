@@ -51,6 +51,21 @@ const generateBombBoard = (numOfRows, numOfColumns, bombs) => {
 }
 
 ////////////////////////
+//Checks adjacent tiles for bombs
+////////////////////////
+
+const getNumberOfNeighborBombs = (bombBoard, rowIndex, columnIndex) => {
+  let neighborOffsets = [ [-1,-1], [-1,0], [-1,1], [0,-1],
+                          [0,1], [1,-1], [1,0], [1,1] ];
+  const numberOfColumns = bombBoard[0].length; //returns the length of the first row
+
+neighborOffsets.forEach(offset => {
+  const neighborRowIndex;
+
+});
+}
+
+////////////////////////
 //Prints the board
 ////////////////////////
 
@@ -58,17 +73,6 @@ const printBoard = (board) => {
   console.log(board.map(row => row.join(' | ')).join('\n'));
   //Log to the console: the 'board' passed into the function, joined with
   //the ' | ', and then joined with a new line.
-}
-
-////////////////////////
-//Checks adjacent tiles for bombs
-////////////////////////
-
-const getNumberOfNeighborBombs = (bombBoard, rowIndex, columnIndex) => {
-  let neighborOffsets = [ [-1,-1], [0,-1], [1,-1], [-1,0],
-                          [1,0], [-1,1], [0,1], [1,1] ];
-  const numberOfColumns = bombBoard[0].length; //returns the length of the first row
-
 }
 
 //////////////////
