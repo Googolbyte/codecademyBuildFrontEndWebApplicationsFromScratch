@@ -16,6 +16,10 @@ const generatePlayerBoard = (numOfRows, numOfColumns) => {
                 //specify, allowing the length and width of the board to be
                 //customized.
 
+////////////////////////
+//Generates a bomb board--------------
+////////////////////////
+
 const generateBombBoard = (numOfRows, numOfColumns, bombs) => {
   board = [];
   for (let y = 0; y < numOfRows; y++) {
@@ -73,9 +77,26 @@ const getNumberOfNeighborBombs = (bombBoard, rowIndex, columnIndex) => {
           numberOfBombs++; //then incrementing the bomb counter
         }
     }
-    return numberOfBombs;
   });
+  return numberOfBombs;
   //Code against each neighboring row and column ends here
+}
+
+////////////////////////
+//Flips a tile on the player board
+////////////////////////
+
+const flipTile = (playerBoard, bombBoard, rowIndex, columnIndex) =>  {
+  if (playerBoard[rowIndex][columnIndex] !== ' ') {
+    console.log('This tile has already been flipped!');
+    return;
+  } else if (bombBoard[rowIndex][columnIndex] === 'B') {
+    playerBoard[rowIndex][columnIndex] === 'B';
+    console.log('You landed on a bomb')
+  } else {
+    playerBoard[rowIndex][columnIndex] = getNumberOfNeighborBombs(bombBoard,
+    rowIndex, columnIndex);
+  }
 }
 
 ////////////////////////
@@ -92,10 +113,14 @@ const printBoard = (board) => {
 //Testing the code
 //////////////////
 
-let playerBoard = generatePlayerBoard(3, 4);
-let bombBoard = generateBombBoard(3, 4, 5);
+let playerBoard = generatePlayerBoard(3, 3);
+let bombBoard = generateBombBoard(3, 3, 1);
+
 console.log('Player Board: ');
 printBoard(playerBoard);
 console.log('Bomb Board: ');
 printBoard(bombBoard);
-console.log(playerBoard);
+
+flipTile(playerBoard, bombBoard, 1, 1);
+console.log('Updated Player Board: ');
+printBoard(playerBoard);
