@@ -57,12 +57,25 @@ const generateBombBoard = (numOfRows, numOfColumns, bombs) => {
 const getNumberOfNeighborBombs = (bombBoard, rowIndex, columnIndex) => {
   let neighborOffsets = [ [-1,-1], [-1,0], [-1,1], [0,-1],
                           [0,1], [1,-1], [1,0], [1,1] ];
+  //Max number of rows, columns, and a number of bombs variable
+  const numberOfRows = bombBoard.length;
   const numberOfColumns = bombBoard[0].length; //returns the length of the first row
-
-neighborOffsets.forEach(offset => {
-  const neighborRowIndex;
-
-});
+  let numberOfBombs = 0;
+  //Running code against each neighboring row and column
+  neighborOffsets.forEach(offset => {
+    const neighborRowIndex = rowIndex + offset[0];
+    const neighborColumnIndex = columnIndex + offset[1];
+    //Making sure the offsets are valid (i.e. making sure they exist in the bombBoard array)
+    if (neighborRowIndex >= 0 && neighborRowIndex < numberOfRows &&
+        neighborColumnIndex >= 0 && neighborColumnIndex < numberOfColumns) {
+        //Then checking to see that the valid offsets contain a bomb
+        if (bombBoard[neighborRowIndex][neighborColumnIndex] === 'B') {
+          numberOfBombs++; //then incrementing the bomb counter
+        }
+    }
+    return numberOfBombs;
+  });
+  //Code against each neighboring row and column ends here
 }
 
 ////////////////////////
